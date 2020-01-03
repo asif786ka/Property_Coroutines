@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ProgressBar
 import android.widget.Toast
+import kotlinx.android.synthetic.main.list_main.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.android.Main
@@ -44,9 +45,9 @@ class ListActivityKotlin : AppCompatActivity() {
     // This uses the couroutine call to get the data from the backend.
     fun getPropertyAPI(context: Context) {
         GlobalScope.launch(Dispatchers.Main) {
-            //progress.visibility = View.VISIBLE
+            progress.visibility = View.VISIBLE
             val propertiesResponse = jsonPropertyApi.getProperties().await()
-            //progress.visibility = View.GONE
+            progress.visibility = View.GONE
             if (propertiesResponse.isSuccessful) {
                 // This code needs proper correction.
                 propertiesResponse.body()?.properties?.let { listAdapter.setListItems(it) }
